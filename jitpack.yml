@@ -1,0 +1,12 @@
+jdk:
+  - openjdk17
+
+before_install:
+  - sdk install java 17.0.2-zulu
+  - sdk use java 17.0.2-zulu
+  - sdk install maven
+  - mvn -v
+
+install:
+  - chmod +x ./handler/gradlew
+  - ./handler/gradlew build publishToMavenLocal
