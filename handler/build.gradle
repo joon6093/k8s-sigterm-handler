@@ -5,6 +5,7 @@ plugins {
 }
 
 group = 'io.jeyong'
+version = '1.0.0'
 
 ext {
     artifactName = 'k8s-sigterm-handler'
