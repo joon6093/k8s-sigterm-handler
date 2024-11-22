@@ -1,0 +1,4 @@
+rootProject.name = 'k8s-sigterm-handler'
+
+include('handler')
+include('test')
