@@ -1,7 +1,7 @@
 # Sigterm Handler for Spring applications in Kubernetes
 In Kubernetes, Pods are gracefully terminated by sending a SIGTERM signal to their containers. However, in Java-based Spring Boot applications, the default behavior sets the exit code to 143. As a result, Kubernetes marks the Pod as "Error," even though the termination was intentional and graceful. This can lead to unnecessary alerts and operational confusion.
 
-The Sigterm Handler ensures that SIGTERM signals are correctly processed, allowing your Spring application to exit cleanly with a 0 exit code, ensuring the Pod is marked as "Succeeded" rather than "Error" in Kubernetes.
+The Sigterm Handler ensures that SIGTERM signals are correctly processed, allowing your Spring application to exit cleanly with a 0 exit code, ensuring the Pod is marked as "Completed" rather than "Error" in Kubernetes.
 
 ## ⚙️ Requirements
 To use the Sigterm Handler, ensure your project meets the following requirements.
