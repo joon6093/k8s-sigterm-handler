@@ -39,8 +39,8 @@ dependencies {
 ```
 
 ## ✏️ Note
-- While designed primarily for Kubernetes environments, the Sigterm Handler is flexible and can be used in other scenarios requiring precise signal handling.
-- If you encounter any issues or have feature requests, feel free to open an issue in the project repository. Contributions and feedback are always welcome!
+- Although designed for Kubernetes, the Sigterm Handler can also be used in Docker or other environments needing signal handling.
+- If you encounter any issues or have suggestions, feel free to open an issue in the repository. feedback is always welcome! 😊
 - If you found this project helpful or interesting, please consider giving it a star on GitHub! ⭐
 
 ## 🗓️ Release
