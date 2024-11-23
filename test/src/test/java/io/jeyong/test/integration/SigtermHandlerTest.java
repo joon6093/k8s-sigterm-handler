@@ -6,6 +6,7 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.apache.commons.io.FileUtils;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +16,13 @@ import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 
 @SpringBootTest
+@DisplayName("SigtermHandler Integration Test")
 public class SigtermHandlerTest {
 
     private final Logger logger = LoggerFactory.getLogger(SigtermHandlerTest.class);
 
     @Test
+    @DisplayName("Application should exit with code 0 on SIGTERM")
     void testSigtermHandling() throws Exception {
         // given
         Path tempDir = Files.createTempDirectory("docker-context");
