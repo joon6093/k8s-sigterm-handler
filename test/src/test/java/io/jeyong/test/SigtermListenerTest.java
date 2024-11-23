@@ -52,7 +52,7 @@ public class SigtermListenerTest {
             sendSigtermToContainer(container);
 
             // then
-            Integer exitCode = container.getCurrentContainerInfo().getState().getExitCode();
+            Long exitCode = container.getCurrentContainerInfo().getState().getExitCodeLong();
             assertThat(exitCode).isEqualTo(0);
         }
     }
