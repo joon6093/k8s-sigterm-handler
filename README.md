@@ -45,4 +45,4 @@ dependencies {
 
 ## 🗓️ Release
 - [Version 1.0.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.0) - Released on 2024/11/23
-
+- [Version 1.0.1](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.1) - Released on 2024/11/24
