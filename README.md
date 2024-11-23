@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {  
-    implementation 'com.github.joon6093:k8s-sigterm-handler:1.0.0'
+    implementation 'com.github.joon6093:k8s-sigterm-handler:1.0.1'
 }
 ```
 #### Maven (pom.xml)
@@ -34,7 +34,7 @@ dependencies {
 <dependency>  
     <groupId>com.github.joon6093</groupId>  
     <artifactId>k8s-sigterm-handle</artifactId>  
-    <version>1.0.0</version>  
+    <version>1.0.1</version>  
 </dependency>
 ```
 
