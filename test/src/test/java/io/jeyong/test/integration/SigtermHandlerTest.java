@@ -1,4 +1,4 @@
-package io.jeyong.test;
+package io.jeyong.test.integration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -15,9 +15,9 @@ import org.testcontainers.containers.output.Slf4jLogConsumer;
 import org.testcontainers.images.builder.ImageFromDockerfile;
 
 @SpringBootTest
-public class SigtermListenerTest {
+public class SigtermHandlerTest {
 
-    private final Logger logger = LoggerFactory.getLogger(SigtermListenerTest.class);
+    private final Logger logger = LoggerFactory.getLogger(SigtermHandlerTest.class);
 
     @Test
     void testSigtermHandling() throws Exception {
