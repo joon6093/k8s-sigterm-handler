@@ -12,14 +12,12 @@ jobs:
     outputs:
       validation-cache-key: ${{ steps.validation-cache.outputs.key }}
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Change directory to test
-        run: cd test
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Generate validation cache key
         id: validation-cache
-        run: echo "key=$(echo validation-${{ runner.os }}-gradle-${{ hashFiles('test/**/*.gradle*', 'test/**/gradle-wrapper.properties') }})" >> $GITHUB_OUTPUT
+        run: echo "key=validation-${{ runner.os }}-gradle-${{ hashFiles('test/**/*.gradle*', 'test/**/gradle-wrapper.properties') }}" >> $GITHUB_OUTPUT
 
       - name: Output start time
         shell: bash
@@ -29,10 +27,8 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Change directory to test
-        run: cd test
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Cache Gradle packages
         id: cache-gradle
@@ -68,13 +64,13 @@ jobs:
           name: validation-report
           path: ${{ github.workspace }}/test/build/reports/tests/test/
 
-      - name: publish validation results
+      - name: Publish validation results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           files: ${{ github.workspace }}/test/build/test-results/test/TEST-*.xml
 
-      - name: add comments to a pull request
+      - name: Add comments to a pull request
         uses: mikepenz/action-junit-report@v4
         if: github.event_name == 'pull_request' && always()
         with:
