@@ -9,4 +9,4 @@ before_install:
 
 install:
   - chmod +x ./handler/gradlew
-  - ./handler/gradlew build publishToMavenLocal
+  - ./handler/gradlew assemble publishToMavenLocal
