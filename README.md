@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {  
-    implementation 'com.github.joon6093:k8s-sigterm-handler:1.0.2'
+    implementation 'com.github.joon6093:k8s-sigterm-handler:1.0.3'
 }
 ```
 #### Maven (pom.xml)
@@ -34,7 +34,7 @@ dependencies {
 <dependency>  
     <groupId>com.github.joon6093</groupId>  
     <artifactId>k8s-sigterm-handle</artifactId>  
-    <version>1.0.2</version>  
+    <version>1.0.3</version>  
 </dependency>
 ```
 
@@ -47,3 +47,4 @@ dependencies {
 - [Version 1.0.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.0) - Released on 2024/11/23
 - [Version 1.0.1](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.1) - Released on 2024/11/24
 - [Version 1.0.2](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.2) - Released on 2024/11/24
+- [Version 1.0.3](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.3) - Released on 2024/11/25
