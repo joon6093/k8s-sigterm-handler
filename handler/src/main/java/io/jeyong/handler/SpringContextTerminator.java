@@ -13,3 +13,8 @@ public class SpringContextTerminator extends ApplicationTerminator {
         this.exitCode = exitCode;
     }
 
+    @Override
+    protected int getExitCode() {
+        return SpringApplication.exit(applicationContext, () -> exitCode);
+    }
+}
