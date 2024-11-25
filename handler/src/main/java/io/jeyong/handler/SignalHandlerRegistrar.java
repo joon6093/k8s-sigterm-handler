@@ -5,17 +5,16 @@ import sun.misc.Signal;
 
 public class SignalHandlerRegistrar {
 
-    public static final String SIGNAL_TYPE = "TERM";
-    public static final int EXIT_CODE = 0;
-
     private final ApplicationTerminator applicationTerminator;
+    private final String signalType;
 
-    public SignalHandlerRegistrar(final ApplicationTerminator applicationTerminator) {
+    public SignalHandlerRegistrar(final ApplicationTerminator applicationTerminator, final String signalType) {
         this.applicationTerminator = applicationTerminator;
+        this.signalType = signalType;
     }
 
     @PostConstruct
     public void registerHandler() {
-        Signal.handle(new Signal(SIGNAL_TYPE), applicationTerminator.handleTermination(EXIT_CODE));
+        Signal.handle(new Signal(signalType), applicationTerminator.handleTermination());
     }
 }
