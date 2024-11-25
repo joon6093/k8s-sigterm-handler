@@ -1,6 +1,5 @@
 package io.jeyong.test.unit;
 
-import static io.jeyong.handler.SignalHandlerRegistrar.SIGNAL_TYPE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import io.jeyong.handler.ApplicationTerminator;
@@ -17,17 +16,30 @@ public class SignalHandlerRegistrarTest {
     @DisplayName("SignalHandler should be registered correctly")
     void testSignalHandlerRegistration() {
         // given
-        SignalHandler mockSignalHandler = signal -> System.out.println("Mock signal handler");
-        ApplicationTerminator applicationTerminator = status -> mockSignalHandler;
-        SignalHandlerRegistrar registrar = new SignalHandlerRegistrar(applicationTerminator);
+        String signalType = "TERM";
+        int exitCode = 0;
+        SignalHandler expectedHandler = signal -> System.exit(exitCode);
+        ApplicationTerminator terminator = new ApplicationTerminator() {
+
+            @Override
+            public SignalHandler handleTermination() {
+                return expectedHandler;
+            }
+
+            @Override
+            protected int getExitCode() {
+                return exitCode;
+            }
+        };
+        SignalHandlerRegistrar registrar = new SignalHandlerRegistrar(terminator, signalType);
 
         // when
         registrar.registerHandler();
 
-        Signal registeredSignal = new Signal(SIGNAL_TYPE);
+        Signal registeredSignal = new Signal(signalType);
         SignalHandler registeredHandler = Signal.handle(registeredSignal, null);
 
         // then
-        assertThat(registeredHandler).isEqualTo(mockSignalHandler);
+        assertThat(registeredHandler).isEqualTo(expectedHandler);
     }
 }
