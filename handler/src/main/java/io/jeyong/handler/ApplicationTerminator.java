@@ -2,7 +2,11 @@ package io.jeyong.handler;
 
 import sun.misc.SignalHandler;
 
-public interface ApplicationTerminator {
+public abstract class ApplicationTerminator {
 
-    SignalHandler handleTermination(final int status);
+    public SignalHandler handleTermination() {
+        return signal -> System.exit(getExitCode());
+    }
+
+    protected abstract int getExitCode();
 }
