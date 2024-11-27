@@ -51,7 +51,6 @@ class SigtermHandlerPropertiesTest {
             classes = TestApplication.class,
             properties = {
                     "kubernetes.handler.enabled=false",
-                    "kubernetes.handler.exit-code=2"
             }
     )
     @DisplayName("When disabled")
