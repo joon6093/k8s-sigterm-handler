@@ -1,7 +1,9 @@
 package io.jeyong.handler;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 // @formatter:off
-import org.springframework.boot.context.properties.ConfigurationProperties; /**
+/**
  * Configuration properties for Kubernetes SIGTERM handling.
  *
  * <p>
@@ -11,7 +13,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties; /**
  *
  * <ul>
  *     <li><b>kubernetes.handler.enabled:</b> Set whether the handler is enabled or disabled (default: true).</li>
- *     <li><b>kubernetes.handler.exit-code:</b> Sets the exit code for graceful application termination (default: 0).</li>
+ *     <li><b>kubernetes.handler.exit-code:</b> Set the exit code for graceful application termination (default: 0).</li>
  * </ul>
  *
  * <pre>
@@ -46,7 +48,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties; /**
 public class SigtermHandlerProperties {
 
     private boolean enabled = true;
-
     private int exitCode = 0;
 
     public boolean isEnabled() {
