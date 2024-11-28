@@ -4,6 +4,7 @@ import static io.jeyong.test.cleanup.ContextClosedEventHandler.CONTEXT_CLOSED_EV
 import static io.jeyong.test.cleanup.PreDestroyHandler.PRE_DESTROY_LOG;
 import static io.jeyong.test.cleanup.ShutdownHookHandler.SHUTDOWN_HOOK_LOG;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
 import static org.testcontainers.containers.wait.strategy.Wait.forLogMessage;
 
 import java.io.File;
@@ -57,9 +58,11 @@ public class SigtermHandlerTest {
 
         // then
         String logs = container.getLogs();
-        assertThat(logs).contains(PRE_DESTROY_LOG);
-        assertThat(logs).contains(CONTEXT_CLOSED_EVENT_LOG);
-        assertThat(logs).contains(SHUTDOWN_HOOK_LOG);
+        assertSoftly(softly -> {
+            softly.assertThat(logs).contains(PRE_DESTROY_LOG);
+            softly.assertThat(logs).contains(CONTEXT_CLOSED_EVENT_LOG);
+            softly.assertThat(logs).contains(SHUTDOWN_HOOK_LOG);
+        });
     }
 
     private static ImageFromDockerfile buildImage() {
