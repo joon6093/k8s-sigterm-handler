@@ -49,6 +49,8 @@ public class SigtermHandlerProperties {
 
     private boolean enabled = true;
     private int exitCode = 0;
+    private String terminationMessagePath;
+    private String terminationMessage = "SIGTERM signal received. Application has been terminated successfully.";
 
     public boolean isEnabled() {
         return enabled;
@@ -64,5 +66,21 @@ public class SigtermHandlerProperties {
 
     public void setExitCode(final int exitCode) {
         this.exitCode = exitCode;
+    }
+
+    public String getTerminationMessagePath() {
+        return terminationMessagePath;
+    }
+
+    public void setTerminationMessagePath(final String terminationMessagePath) {
+        this.terminationMessagePath = terminationMessagePath;
+    }
+
+    public String getTerminationMessage() {
+        return terminationMessage;
+    }
+
+    public void setTerminationMessage(final String terminationMessage) {
+        this.terminationMessage = terminationMessage;
     }
 }
