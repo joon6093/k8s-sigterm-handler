@@ -19,8 +19,8 @@ class SigtermHandlerPropertiesTest {
     @SpringBootTest(
             classes = TestApplication.class,
             properties = {
-                    "kubernetes.handler.enabled=true",
-                    "kubernetes.handler.exit-code=1000"
+                    "kubernetes.sigterm-handler.enabled=true",
+                    "kubernetes.sigterm-handler.exit-code=1000"
             }
     )
     @DisplayName("handler enabled")
@@ -51,7 +51,7 @@ class SigtermHandlerPropertiesTest {
     @SpringBootTest(
             classes = TestApplication.class,
             properties = {
-                    "kubernetes.handler.enabled=false",
+                    "kubernetes.sigterm-handler.enabled=false",
             }
     )
     @DisplayName("handler disabled")

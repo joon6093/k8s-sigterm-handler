@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty(
-        prefix = "kubernetes.handler",
+        prefix = "kubernetes.sigterm-handler",
         name = "enabled",
         havingValue = "true",
         matchIfMissing = true
