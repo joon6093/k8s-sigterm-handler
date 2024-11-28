@@ -8,7 +8,9 @@ public class SpringContextTerminator extends ApplicationTerminator {
     private final ApplicationContext applicationContext;
     private final int exitCode;
 
-    public SpringContextTerminator(final ApplicationContext applicationContext, final int exitCode) {
+    public SpringContextTerminator(final ApplicationContext applicationContext, final int exitCode,
+                                   final String terminationMessagePath, final String terminationMessage) {
+        super(terminationMessagePath, terminationMessage);
         this.applicationContext = applicationContext;
         this.exitCode = exitCode;
     }

@@ -26,7 +26,8 @@ public class SigtermHandlerConfiguration {
 
     @Bean
     public ApplicationTerminator applicationTerminator(final ApplicationContext applicationContext) {
-        return new SpringContextTerminator(applicationContext, sigtermHandlerProperties.getExitCode());
+        return new SpringContextTerminator(applicationContext, sigtermHandlerProperties.getExitCode(),
+                sigtermHandlerProperties.getTerminationMessagePath(), sigtermHandlerProperties.getTerminationMessage());
     }
 
     @Bean
