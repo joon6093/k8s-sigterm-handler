@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {  
-    implementation 'com.github.joon6093:k8s-sigterm-handler:1.1.0'
+    implementation 'com.github.joon6093:k8s-sigterm-handler:1.2.0'
 }
 ```
 #### Maven (pom.xml)
@@ -34,8 +34,28 @@ dependencies {
 <dependency>  
     <groupId>com.github.joon6093</groupId>  
     <artifactId>k8s-sigterm-handle</artifactId>  
-    <version>1.1.0</version>  
+    <version>1.2.0</version>  
 </dependency>
+```
+## 🔧 Configuration
+To customize the Sigterm Handler, configure the following options in your Spring Boot configuration file.
+
+#### Options
+- **enabled:** Set whether the handler is enabled or disabled (default: true).
+- **exit-code:** Set the exit code for graceful application termination (default: 0).
+
+#### YAML (application.yml)
+```
+kubernetes:
+  handler:
+    enabled: true
+    exit-code: 0
+```
+
+#### Properties (application.properties)
+```
+kubernetes.handler.enabled=true
+kubernetes.handler.exit-code=0
 ```
 
 ## ✏️ Note
@@ -49,3 +69,4 @@ dependencies {
 - [Version 1.0.2](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.2) - Released on 2024/11/24
 - [Version 1.0.3](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.3) - Released on 2024/11/25
 - [Version 1.1.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.1.0) - Released on 2024/11/26
+- [Version 1.2.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.0) - Released on 2024/11/28
