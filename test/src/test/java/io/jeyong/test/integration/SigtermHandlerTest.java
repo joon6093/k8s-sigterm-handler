@@ -23,7 +23,7 @@ import org.testcontainers.images.builder.ImageFromDockerfile;
 @DisplayName("SigtermHandler Integration Test")
 public class SigtermHandlerTest {
 
-    private static final int EXPECTED_EXIT_CODE = 10;
+    private static final int EXIT_CODE = 10;
     private static final String TERMINATION_MESSAGE_PATH = "/app/termination-message.message";
     private static final String TERMINATION_MESSAGE = "Test termination message";
 
@@ -54,7 +54,7 @@ public class SigtermHandlerTest {
 
         // then
         Long exitCode = container.getCurrentContainerInfo().getState().getExitCodeLong();
-        assertThat(exitCode).isEqualTo(EXPECTED_EXIT_CODE);
+        assertThat(exitCode).isEqualTo(EXIT_CODE);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class SigtermHandlerTest {
                     exit-code: %d
                     termination-message-path: %s
                     termination-message: %s
-                """, EXPECTED_EXIT_CODE, TERMINATION_MESSAGE_PATH, TERMINATION_MESSAGE);
+                """, EXIT_CODE, TERMINATION_MESSAGE_PATH, TERMINATION_MESSAGE);
         Files.writeString(applicationYaml, yamlContent);
     }
 
@@ -153,6 +153,8 @@ public class SigtermHandlerTest {
                 .withSignal("SIGTERM")
                 .exec();
 
-        Thread.sleep(1000);
+        while (container.isRunning()) {
+            Thread.sleep(1000);
+        }
     }
 }
