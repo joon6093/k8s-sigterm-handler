@@ -15,12 +15,18 @@ import org.springframework.context.ApplicationContext;
 @DisplayName("SigtermHandlerProperties Unit Test")
 class SigtermHandlerPropertiesTest {
 
+    private static final int EXPECTED_EXIT_CODE = 10;
+    private static final String TERMINATION_MESSAGE_PATH = "/termination-message.message";
+    private static final String TERMINATION_MESSAGE = "Test termination message";
+
     @Nested
     @SpringBootTest(
             classes = TestApplication.class,
             properties = {
-                    "kubernetes.handler.enabled=true",
-                    "kubernetes.handler.exit-code=1000"
+                    "kubernetes.sigterm-handler.enabled=true",
+                    "kubernetes.sigterm-handler.exit-code=" + EXPECTED_EXIT_CODE,
+                    "kubernetes.sigterm-handler.termination-message-path=" + TERMINATION_MESSAGE_PATH,
+                    "kubernetes.sigterm-handler.termination-message=" + TERMINATION_MESSAGE,
             }
     )
     @DisplayName("handler enabled")
@@ -30,11 +36,11 @@ class SigtermHandlerPropertiesTest {
         private ApplicationContext applicationContext;
 
         @Autowired
-        private SigtermHandlerProperties sigtermHandlerProperties;
+        private SigtermHandlerProperties properties;
 
         @Test
-        @DisplayName("Register Configuration with the configured exit code")
-        void registerConfiguration() {
+        @DisplayName("Register Configuration with the configured properties")
+        void testRegisterConfiguration() {
             // given & when
             boolean beanExists = applicationContext.containsBeanDefinition(
                     "io.jeyong.handler.SigtermHandlerConfiguration");
@@ -42,7 +48,9 @@ class SigtermHandlerPropertiesTest {
             // then
             assertSoftly(softly -> {
                 softly.assertThat(beanExists).isTrue();
-                softly.assertThat(sigtermHandlerProperties.getExitCode()).isEqualTo(1000);
+                softly.assertThat(properties.getExitCode()).isEqualTo(EXPECTED_EXIT_CODE);
+                softly.assertThat(properties.getTerminationMessagePath()).isEqualTo(TERMINATION_MESSAGE_PATH);
+                softly.assertThat(properties.getTerminationMessage()).isEqualTo(TERMINATION_MESSAGE);
             });
         }
     }
@@ -51,7 +59,7 @@ class SigtermHandlerPropertiesTest {
     @SpringBootTest(
             classes = TestApplication.class,
             properties = {
-                    "kubernetes.handler.enabled=false",
+                    "kubernetes.sigterm-handler.enabled=false",
             }
     )
     @DisplayName("handler disabled")
@@ -62,7 +70,7 @@ class SigtermHandlerPropertiesTest {
 
         @Test
         @DisplayName("Does not register Configuration")
-        void doesNotRegisterConfiguration() {
+        void testDoesNotRegisterConfiguration() {
             // given & when
             boolean beanExists = applicationContext.containsBeanDefinition(
                     "io.jeyong.handler.SigtermHandlerConfiguration");

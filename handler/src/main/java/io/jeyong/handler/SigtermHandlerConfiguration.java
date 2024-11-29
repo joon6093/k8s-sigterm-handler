@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty(
-        prefix = "kubernetes.handler",
+        prefix = "kubernetes.sigterm-handler",
         name = "enabled",
         havingValue = "true",
         matchIfMissing = true
@@ -26,7 +26,8 @@ public class SigtermHandlerConfiguration {
 
     @Bean
     public ApplicationTerminator applicationTerminator(final ApplicationContext applicationContext) {
-        return new SpringContextTerminator(applicationContext, sigtermHandlerProperties.getExitCode());
+        return new SpringContextTerminator(applicationContext, sigtermHandlerProperties.getExitCode(),
+                sigtermHandlerProperties.getTerminationMessagePath(), sigtermHandlerProperties.getTerminationMessage());
     }
 
     @Bean
