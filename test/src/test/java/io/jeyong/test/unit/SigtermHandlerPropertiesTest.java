@@ -20,7 +20,9 @@ class SigtermHandlerPropertiesTest {
             classes = TestApplication.class,
             properties = {
                     "kubernetes.sigterm-handler.enabled=true",
-                    "kubernetes.sigterm-handler.exit-code=1000"
+                    "kubernetes.sigterm-handler.exit-code=1000",
+                    "kubernetes.sigterm-handler.termination-message-path=/termination-message.message",
+                    "kubernetes.sigterm-handler.termination-message=Test termination message"
             }
     )
     @DisplayName("handler enabled")
@@ -33,8 +35,8 @@ class SigtermHandlerPropertiesTest {
         private SigtermHandlerProperties sigtermHandlerProperties;
 
         @Test
-        @DisplayName("Register Configuration with the configured exit code")
-        void registerConfiguration() {
+        @DisplayName("Register Configuration with the configured properties")
+        void testRegisterConfiguration() {
             // given & when
             boolean beanExists = applicationContext.containsBeanDefinition(
                     "io.jeyong.handler.SigtermHandlerConfiguration");
@@ -43,6 +45,10 @@ class SigtermHandlerPropertiesTest {
             assertSoftly(softly -> {
                 softly.assertThat(beanExists).isTrue();
                 softly.assertThat(sigtermHandlerProperties.getExitCode()).isEqualTo(1000);
+                softly.assertThat(sigtermHandlerProperties.getTerminationMessagePath())
+                        .isEqualTo("/termination-message.message");
+                softly.assertThat(sigtermHandlerProperties.getTerminationMessage())
+                        .isEqualTo("Test termination message");
             });
         }
     }
@@ -62,7 +68,7 @@ class SigtermHandlerPropertiesTest {
 
         @Test
         @DisplayName("Does not register Configuration")
-        void doesNotRegisterConfiguration() {
+        void testDoesNotRegisterConfiguration() {
             // given & when
             boolean beanExists = applicationContext.containsBeanDefinition(
                     "io.jeyong.handler.SigtermHandlerConfiguration");

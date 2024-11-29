@@ -19,7 +19,7 @@ public class SignalHandlerRegistrarTest {
         String signalType = "TERM";
         int exitCode = 0;
         SignalHandler expectedHandler = signal -> System.exit(exitCode);
-        ApplicationTerminator terminator = new ApplicationTerminator() {
+        ApplicationTerminator terminator = new ApplicationTerminator(null, null) {
 
             @Override
             public SignalHandler handleTermination() {
