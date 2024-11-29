@@ -15,14 +15,18 @@ import org.springframework.context.ApplicationContext;
 @DisplayName("SigtermHandlerProperties Unit Test")
 class SigtermHandlerPropertiesTest {
 
+    private static final int EXPECTED_EXIT_CODE = 10;
+    private static final String TERMINATION_MESSAGE_PATH = "/termination-message.message";
+    private static final String TERMINATION_MESSAGE = "Test termination message";
+
     @Nested
     @SpringBootTest(
             classes = TestApplication.class,
             properties = {
                     "kubernetes.sigterm-handler.enabled=true",
-                    "kubernetes.sigterm-handler.exit-code=1000",
-                    "kubernetes.sigterm-handler.termination-message-path=/termination-message.message",
-                    "kubernetes.sigterm-handler.termination-message=Test termination message"
+                    "kubernetes.sigterm-handler.exit-code=" + EXPECTED_EXIT_CODE,
+                    "kubernetes.sigterm-handler.termination-message-path=" + TERMINATION_MESSAGE_PATH,
+                    "kubernetes.sigterm-handler.termination-message=" + TERMINATION_MESSAGE,
             }
     )
     @DisplayName("handler enabled")
@@ -32,7 +36,7 @@ class SigtermHandlerPropertiesTest {
         private ApplicationContext applicationContext;
 
         @Autowired
-        private SigtermHandlerProperties sigtermHandlerProperties;
+        private SigtermHandlerProperties properties;
 
         @Test
         @DisplayName("Register Configuration with the configured properties")
@@ -44,11 +48,9 @@ class SigtermHandlerPropertiesTest {
             // then
             assertSoftly(softly -> {
                 softly.assertThat(beanExists).isTrue();
-                softly.assertThat(sigtermHandlerProperties.getExitCode()).isEqualTo(1000);
-                softly.assertThat(sigtermHandlerProperties.getTerminationMessagePath())
-                        .isEqualTo("/termination-message.message");
-                softly.assertThat(sigtermHandlerProperties.getTerminationMessage())
-                        .isEqualTo("Test termination message");
+                softly.assertThat(properties.getExitCode()).isEqualTo(EXPECTED_EXIT_CODE);
+                softly.assertThat(properties.getTerminationMessagePath()).isEqualTo(TERMINATION_MESSAGE_PATH);
+                softly.assertThat(properties.getTerminationMessage()).isEqualTo(TERMINATION_MESSAGE);
             });
         }
     }
