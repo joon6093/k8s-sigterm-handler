@@ -14,7 +14,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * <ul>
  *     <li><b>kubernetes.sigterm-handler.enabled:</b> Set whether the handler is enabled or disabled. (default: true)</li>
  *     <li><b>kubernetes.sigterm-handler.exit-code:</b> Set the exit code for graceful application termination. (default: 0)</li>
- *     <li><b>kubernetes.sigterm-handler.termination-message-path:</b> Set the file path where the termination message should be written. (optional)</li>
+ *     <li><b>kubernetes.sigterm-handler.termination-message-path:</b> Set the file path where the termination message should be written. (default: not set)</li>
  *     <li><b>kubernetes.sigterm-handler.termination-message:</b> Set the content of the termination message written to the specified path. (default: SIGTERM signal received. Application has been terminated successfully.)</li>
  * </ul>
  *
