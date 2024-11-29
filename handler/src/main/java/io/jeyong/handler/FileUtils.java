@@ -3,6 +3,7 @@ package io.jeyong.handler;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.apache.logging.log4j.util.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +15,7 @@ public class FileUtils {
     }
 
     public static void writeToFile(final String filePath, final String message) {
-        if (filePath == null || filePath.isBlank()) {
+        if (Strings.isBlank(filePath)) {
             return;
         }
 
