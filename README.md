@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {  
-    implementation 'com.github.joon6093:k8s-sigterm-handler:1.2.0'
+    implementation 'com.github.joon6093:k8s-sigterm-handler:1.2.1'
 }
 ```
 #### Maven (pom.xml)
@@ -34,28 +34,47 @@ dependencies {
 <dependency>  
     <groupId>com.github.joon6093</groupId>  
     <artifactId>k8s-sigterm-handle</artifactId>  
-    <version>1.2.0</version>  
+    <version>1.2.1</version>  
 </dependency>
 ```
 ## 🔧 Configuration
 To customize the Sigterm Handler, configure the following options in your Spring Boot configuration file.
 
 #### Options
-- **enabled:** Set whether the handler is enabled or disabled (default: true).
-- **exit-code:** Set the exit code for graceful application termination (default: 0).
-
+- **enabled:** Set whether the handler is enabled or disabled. (default: true)
+- **exit-code:** Set the exit code for graceful application termination. (default: 0)
+- **termination-message-path:** Set the file path where the termination message should be written. (default: not set)
+- **termination-message:** Set the content of the termination message written to the specified path. (default: SIGTERM signal received. Application has been terminated successfully.)
+  
 #### YAML (application.yml)
 ```
 kubernetes:
-  handler:
+  sigterm-handler:
     enabled: true
     exit-code: 0
+    termination-message-path: /dev/termination-log
+    termination-message: SIGTERM signal received. Application has been terminated successfully.
 ```
 
 #### Properties (application.properties)
 ```
-kubernetes.handler.enabled=true
-kubernetes.handler.exit-code=0
+kubernetes.sigterm-handler.enabled=true
+kubernetes.sigterm-handler.exit-code=0
+kubernetes.sigterm-handler.termination-message-path=/dev/termination-log
+kubernetes.sigterm-handler.termination-message=SIGTERM signal received. Application has been terminated successfully.
+```
+
+## ✨ Effect
+Using the Sigterm Handler, after the Pod receives a SIGTERM signal and shuts down gracefully, you can run commands like "kubectl get pod" in Kubernetes to verify that the application terminated cleanly.
+```
+state:
+  terminated:
+    containerID: containerd://7935f0bcfd27b2d01f900029746261e0cdad8bcdbd5a7
+    exitCode: 0
+    finishedAt: "2024-11-29T20:22:26Z"
+    message: SIGTERM signal received. Application has been terminated successfully.
+    reason: Completed
+    startedAt: "2024-11-29T20:20:42Z"
 ```
 
 ## ✏️ Note
@@ -70,3 +89,4 @@ kubernetes.handler.exit-code=0
 - [Version 1.0.3](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.3) - Released on 2024/11/25
 - [Version 1.1.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.1.0) - Released on 2024/11/26
 - [Version 1.2.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.0) - Released on 2024/11/28
+- [Version 1.2.1](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.1) - Released on 2024/11/29
