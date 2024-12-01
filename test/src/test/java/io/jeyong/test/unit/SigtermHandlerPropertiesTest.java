@@ -15,7 +15,7 @@ import org.springframework.context.ApplicationContext;
 @DisplayName("SigtermHandlerProperties Unit Test")
 class SigtermHandlerPropertiesTest {
 
-    private static final int EXPECTED_EXIT_CODE = 10;
+    private static final int EXIT_CODE = 10;
     private static final String TERMINATION_MESSAGE_PATH = "/termination-message.message";
     private static final String TERMINATION_MESSAGE = "Test termination message";
 
@@ -24,7 +24,7 @@ class SigtermHandlerPropertiesTest {
             classes = TestApplication.class,
             properties = {
                     "kubernetes.sigterm-handler.enabled=true",
-                    "kubernetes.sigterm-handler.exit-code=" + EXPECTED_EXIT_CODE,
+                    "kubernetes.sigterm-handler.exit-code=" + EXIT_CODE,
                     "kubernetes.sigterm-handler.termination-message-path=" + TERMINATION_MESSAGE_PATH,
                     "kubernetes.sigterm-handler.termination-message=" + TERMINATION_MESSAGE,
             }
@@ -48,7 +48,7 @@ class SigtermHandlerPropertiesTest {
             // then
             assertSoftly(softly -> {
                 softly.assertThat(beanExists).isTrue();
-                softly.assertThat(properties.getExitCode()).isEqualTo(EXPECTED_EXIT_CODE);
+                softly.assertThat(properties.getExitCode()).isEqualTo(EXIT_CODE);
                 softly.assertThat(properties.getTerminationMessagePath()).isEqualTo(TERMINATION_MESSAGE_PATH);
                 softly.assertThat(properties.getTerminationMessage()).isEqualTo(TERMINATION_MESSAGE);
             });
