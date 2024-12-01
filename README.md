@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {  
-    implementation 'com.github.joon6093:k8s-sigterm-handler:1.2.1'
+    implementation 'com.github.joon6093:k8s-sigterm-handler:1.2.2'
 }
 ```
 #### Maven (pom.xml)
@@ -34,7 +34,7 @@ dependencies {
 <dependency>  
     <groupId>com.github.joon6093</groupId>  
     <artifactId>k8s-sigterm-handle</artifactId>  
-    <version>1.2.1</version>  
+    <version>1.2.2</version>  
 </dependency>
 ```
 ## 🔧 Configuration
@@ -64,12 +64,23 @@ kubernetes.sigterm-handler.termination-message-path=/dev/termination-log
 kubernetes.sigterm-handler.termination-message=SIGTERM signal received. Application has been terminated successfully.
 ```
 
+## 📄 Log
+When the Sigterm Handler is initialized, a startup log displays the exit code, termination message path, and termination message.
+```
+2024-11-30T08:10:12.628+09:00 INFO --- i.j.handler.SigtermHandlerConfiguration: Sigterm handler initialized with exitCode: 0, terminationMessagePath: /dev/termination-log, terminationMessage: 'SIGTERM signal received...'
+```
+
+Log output indicating that a SIGTERM signal has been handled.
+```
+2024-11-30T08:10:17.677+09:00 INFO --- i.jeyong.handler.ApplicationTerminator: Received SIGTERM signal. Initiating termination handler.
+```
+
 ## ✨ Effect
 Using the Sigterm Handler, after the Pod receives a SIGTERM signal and shuts down gracefully, you can run commands like "kubectl get pod" in Kubernetes to verify that the application terminated cleanly.
 ```
 state:
   terminated:
-    containerID: containerd://7935f0bcfd27b2d01f900029746261e0cdad8bcdbd5a7
+    containerID: containerd://7935f0bcfd27b2d01f900029746261e0cdad8bcdbd5a72d01f901
     exitCode: 0
     finishedAt: "2024-11-29T20:22:26Z"
     message: SIGTERM signal received. Application has been terminated successfully.
@@ -90,3 +101,4 @@ state:
 - [Version 1.1.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.1.0) - Released on 2024/11/26
 - [Version 1.2.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.0) - Released on 2024/11/28
 - [Version 1.2.1](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.1) - Released on 2024/11/29
+- [Version 1.2.2](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.2) - Released on 2024/12/02
