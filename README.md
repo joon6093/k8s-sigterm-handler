@@ -70,9 +70,9 @@ When the Sigterm Handler is initialized, a startup log displays the exit code, t
 2024-11-30T08:10:12.628+09:00 INFO --- i.j.handler.SigtermHandlerConfiguration: Sigterm handler initialized with exitCode: 0, terminationMessagePath: /dev/termination-log, terminationMessage: 'SIGTERM signal received...'
 ```
 
-Log output indicating that a SIGTERM signal has been handled.
+Log output indicating that the SIGTERM signal was received and the Sigterm handler has been triggered to manage the shutdown process.
 ```
-2024-11-30T08:10:17.677+09:00 INFO --- i.jeyong.handler.ApplicationTerminator: Received SIGTERM signal. Initiating termination handler.
+2024-11-30T08:10:17.677+09:00 INFO --- i.j.handler.ApplicationTerminator: Received SIGTERM signal. Initiating termination handler.
 ```
 
 ## ✨ Effect
