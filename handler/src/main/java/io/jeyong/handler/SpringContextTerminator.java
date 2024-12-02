@@ -3,7 +3,7 @@ package io.jeyong.handler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
-public class SpringContextTerminator extends ApplicationTerminator {
+public final class SpringContextTerminator extends ApplicationTerminator {
 
     private final ApplicationContext applicationContext;
     private final int exitCode;

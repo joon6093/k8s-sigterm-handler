@@ -51,7 +51,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 // @formatter:on
 @ConfigurationProperties(prefix = "kubernetes.sigterm-handler")
-public class SigtermHandlerProperties {
+public final class SigtermHandlerProperties {
 
     private boolean enabled = true;
     private int exitCode = 0;

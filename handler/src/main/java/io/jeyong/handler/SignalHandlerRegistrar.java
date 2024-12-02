@@ -3,7 +3,7 @@ package io.jeyong.handler;
 import jakarta.annotation.PostConstruct;
 import sun.misc.Signal;
 
-public class SignalHandlerRegistrar {
+public final class SignalHandlerRegistrar {
 
     private final ApplicationTerminator applicationTerminator;
     private final String signalType;
