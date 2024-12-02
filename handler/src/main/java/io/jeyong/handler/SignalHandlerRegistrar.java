@@ -1,6 +1,7 @@
 package io.jeyong.handler;
 
-import jakarta.annotation.PostConstruct;
+import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.context.event.EventListener;
 import sun.misc.Signal;
 
 public final class SignalHandlerRegistrar {
@@ -13,7 +14,7 @@ public final class SignalHandlerRegistrar {
         this.signalType = signalType;
     }
 
-    @PostConstruct
+    @EventListener(ContextRefreshedEvent.class)
     public void registerHandler() {
         Signal.handle(new Signal(signalType), applicationTerminator.handleTermination());
     }
