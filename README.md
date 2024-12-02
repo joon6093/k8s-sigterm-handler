@@ -6,9 +6,10 @@ The Sigterm Handler ensures that SIGTERM signals are correctly processed, allowi
 ## ⚙️ Requirements
 To use the Sigterm Handler, ensure your project meets the following requirements.
 
+- **Operating System:** Verified to work on Linux, macOS, and Windows. (Uses non-standard APIs for direct signal handling, which may exhibit different behavior across JVMs and OSs.)
 - **Spring Boot:** 3.0.0 or higher  
 - **Java:** 17 or higher
-
+  
 ## 📦 Dependency
 To integrate the Sigterm Handler into your project, follow the steps below based on your build tool.
 
