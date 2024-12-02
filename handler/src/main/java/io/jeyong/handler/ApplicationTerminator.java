@@ -18,10 +18,14 @@ public abstract class ApplicationTerminator {
 
     public SignalHandler handleTermination() {
         return signal -> {
-            logger.info("Received SIGTERM signal. Initiating termination handler.");
+            logTerminationSignal(signal.getName());
             FileUtils.writeToFile(terminationMessagePath, terminationMessage);
             System.exit(getExitCode());
         };
+    }
+
+    private void logTerminationSignal(final String signalName) {
+        logger.info("Received {} signal. Initiating termination handler.", signalName);
     }
 
     protected abstract int getExitCode();
