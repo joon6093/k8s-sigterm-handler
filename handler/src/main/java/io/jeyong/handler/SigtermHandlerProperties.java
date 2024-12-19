@@ -51,7 +51,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 // @formatter:on
 @ConfigurationProperties(prefix = "kubernetes.sigterm-handler")
-public class SigtermHandlerProperties {
+public final class SigtermHandlerProperties {
+
+    private static final int MIN_EXIT_CODE = 0;
+    private static final int MAX_EXIT_CODE = 255;
 
     private boolean enabled = true;
     private int exitCode = 0;
@@ -71,6 +74,7 @@ public class SigtermHandlerProperties {
     }
 
     public void setExitCode(final int exitCode) {
+        validateExitCode(exitCode);
         this.exitCode = exitCode;
     }
 
@@ -88,5 +92,19 @@ public class SigtermHandlerProperties {
 
     public void setTerminationMessage(final String terminationMessage) {
         this.terminationMessage = terminationMessage;
+    }
+
+    /**
+     * Validates the exit code to ensure it adheres to the POSIX standard.
+     *
+     * @param exitCode the exit code to validate
+     * @throws IllegalArgumentException if the exit code is outside the valid range
+     */
+    private void validateExitCode(final int exitCode) {
+        if (exitCode < MIN_EXIT_CODE || exitCode > MAX_EXIT_CODE) {
+            throw new IllegalArgumentException(
+                    String.format("Exit code must be between %d and %d (inclusive) as per POSIX standard.",
+                            MIN_EXIT_CODE, MAX_EXIT_CODE));
+        }
     }
 }

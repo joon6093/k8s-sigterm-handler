@@ -8,6 +8,7 @@ import java.io.File;
 import java.nio.file.Files;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import sun.misc.Signal;
 import sun.misc.SignalHandler;
 
 @DisplayName("ApplicationTerminator Unit Test")
@@ -30,7 +31,7 @@ public class ApplicationTerminatorTest {
         };
 
         // when
-        catchSystemExit(() -> terminator.handleTermination().handle(null));
+        catchSystemExit(() -> terminator.handleTermination().handle(new Signal("TERM")));
 
         // then
         assertThat(Files.readString(tempFile.toPath())).isEqualTo(expectedMessage);
@@ -54,7 +55,7 @@ public class ApplicationTerminatorTest {
         SignalHandler handler = terminator.handleTermination();
 
         // when
-        int actualExitCode = catchSystemExit(() -> handler.handle(null));
+        int actualExitCode = catchSystemExit(() -> handler.handle(new Signal("TERM")));
 
         // then
         assertThat(actualExitCode).isEqualTo(expectedExitCode);
