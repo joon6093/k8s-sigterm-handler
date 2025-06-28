@@ -1,10 +1,10 @@
 package io.jeyong.handler;
 
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import sun.misc.Signal;
 
-public final class SignalHandlerRegistrar {
+public final class SignalHandlerRegistrar implements ApplicationRunner {
 
     private final ApplicationTerminator applicationTerminator;
     private final String signalType;
@@ -14,8 +14,8 @@ public final class SignalHandlerRegistrar {
         this.signalType = signalType;
     }
 
-    @EventListener(ContextRefreshedEvent.class)
-    public void registerHandler() {
+    @Override
+    public void run(final ApplicationArguments args) {
         Signal.handle(new Signal(signalType), applicationTerminator.handleTermination());
     }
 }
