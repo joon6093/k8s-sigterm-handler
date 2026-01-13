@@ -1,4 +1,4 @@
-# Sigterm Handler for Spring applications in Kubernetes
+# Sigterm Handler for Spring applicatiooons in Kubernetes
 In Kubernetes, Pods are gracefully terminated by sending a SIGTERM signal to their containers. However, in Java-based Spring Boot applications, the default behavior sets the exit code to 143. As a result, Kubernetes marks the Pod as "Error," even though the termination was intentional and graceful. This can lead to unnecessary alerts and operational confusion.
 
 The Sigterm Handler ensures that SIGTERM signals are correctly processed, allowing your Spring application to exit cleanly with a 0 exit code, ensuring the Pod is marked as "Completed" rather than "Error" in Kubernetes.
@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {  
-    implementation 'com.github.joon6093:k8s-sigterm-handler:1.3.0'
+    implementation 'com.github.jeyongsong:k8s-sigterm-handler:1.3.0'
 }
 ```
 #### Maven (pom.xml)
@@ -33,7 +33,7 @@ dependencies {
 </repositories>
 
 <dependency>  
-    <groupId>com.github.joon6093</groupId>  
+    <groupId>com.github.jeyongsong</groupId>  
     <artifactId>k8s-sigterm-handle</artifactId>  
     <version>1.3.0</version>  
 </dependency>
@@ -95,12 +95,12 @@ state:
 - If you found this project helpful or interesting, please consider giving it a star on GitHub! ⭐
 
 ## 🗓️ Release
-- [Version 1.0.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.0) - Released on 2024/11/23
-- [Version 1.0.1](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.1) - Released on 2024/11/24
-- [Version 1.0.2](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.2) - Released on 2024/11/24
-- [Version 1.0.3](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.0.3) - Released on 2024/11/25
-- [Version 1.1.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.1.0) - Released on 2024/11/26
-- [Version 1.2.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.0) - Released on 2024/11/28
-- [Version 1.2.1](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.1) - Released on 2024/11/29
-- [Version 1.2.2](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.2.2) - Released on 2024/12/02
-- [Version 1.3.0](https://github.com/joon6093/k8s-sigterm-handler/releases/tag/1.3.0) - Released on 2024/12/19
+- [Version 1.0.0](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.0.0) - Released on 2024/11/23
+- [Version 1.0.1](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.0.1) - Released on 2024/11/24
+- [Version 1.0.2](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.0.2) - Released on 2024/11/24
+- [Version 1.0.3](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.0.3) - Released on 2024/11/25
+- [Version 1.1.0](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.1.0) - Released on 2024/11/26
+- [Version 1.2.0](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.2.0) - Released on 2024/11/28
+- [Version 1.2.1](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.2.1) - Released on 2024/11/29
+- [Version 1.2.2](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.2.2) - Released on 2024/12/02
+- [Version 1.3.0](https://github.com/jeyongsong/k8s-sigterm-handler/releases/tag/1.3.0) - Released on 2024/12/19
