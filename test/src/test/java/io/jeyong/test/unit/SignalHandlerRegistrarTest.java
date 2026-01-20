@@ -34,7 +34,7 @@ public class SignalHandlerRegistrarTest {
         SignalHandlerRegistrar registrar = new SignalHandlerRegistrar(terminator, signalType);
 
         // when
-        registrar.registerHandler();
+        registrar.run(null);
 
         Signal registeredSignal = new Signal(signalType);
         SignalHandler registeredHandler = Signal.handle(registeredSignal, null);
